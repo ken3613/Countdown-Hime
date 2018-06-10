@@ -28,7 +28,7 @@ namespace Desktopwpf
         RegistryKey local = Registry.CurrentUser;
         string keyreg;
 
-        public Window1(MainWindow mf,time timer)
+        public Window1(MainWindow mf,time timer,string mode)
         {
             nw = 776;
             nh = 212;
@@ -38,7 +38,18 @@ namespace Desktopwpf
             this.tw = this.mtimer.Width;           
             InitializeComponent();
             this.slider1.Value = this.th / nh;
-        }
+            if (mode == "gk")
+            {
+                this.radioButton1.IsChecked = true;
+                this.radioButton2.IsChecked = false;
+            }
+            else
+            {
+                this.radioButton2.IsChecked = true;
+                this.radioButton1.IsChecked = false;
+            }
+
+            }
 
 
 
@@ -76,6 +87,24 @@ namespace Desktopwpf
         private void colorwin_Loaded(object sender, RoutedEventArgs e)
         {
             this.checkBox1.IsChecked = this.mc.onstart;
+        }
+
+        private void radioButton1_Checked(object sender, RoutedEventArgs e)
+        {
+            mc.numlabel.Content = mc.gk_c_date.Days.ToString();
+            mc.titlelabel.Content = "距离高考还有";
+            winapi.WritePrivateProfileString("timer", "mode", "gk", System.Windows.Forms.Application.StartupPath + "\\settings.ini");
+            mtimer.exam = mtimer.gk_exam;
+            mtimer.title.Content = "距离" + mtimer.gk.ToString() +"高考还有";
+        }
+
+        private void radioButton2_Checked(object sender, RoutedEventArgs e)
+        {
+            mc.numlabel.Content = mc.zk_c_date.Days.ToString();
+            mc.titlelabel.Content = "距离中考还有";
+            winapi.WritePrivateProfileString("timer", "mode", "zk", System.Windows.Forms.Application.StartupPath + "\\settings.ini");
+            mtimer.exam = mtimer.zk_exam;
+            mtimer.title.Content = "距离" + mtimer.zk.ToString() + "中考还有";
         }
 
     }

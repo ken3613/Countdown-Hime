@@ -7,8 +7,10 @@
             <Grid.Background>
                 <ImageBrush ImageSource="/DeskTop;component/Resources/bg.JPG" />
             </Grid.Background>
+            
         </Grid>
-        <TextBox Height="325" HorizontalAlignment="Left" Margin="120,12,0,0" Name="textBox1" VerticalAlignment="Top" Width="550" IsReadOnly="True" Text="test" BorderBrush="Black" TextAlignment="Left" TextWrapping="Wrap" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" FontSize="13" Background="#B6FFFFFF" AllowDrop="False" Focusable="False"></TextBox>
+        <TextBox Height="325" HorizontalAlignment="Left" Margin="120,12,0,0" Name="textBox1" VerticalAlignment="Top" Width="550" IsReadOnly="True" Text="test" BorderBrush="Black" TextAlignment="Left" TextWrapping="Wrap" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Visible" FontSize="13" Background="#B6FFFFFF" AllowDrop="False" Focusable="False" AutoWordSelection="True"></TextBox>
         <Image Height="100" HorizontalAlignment="Left" Margin="7,8,0,0" Name="image1" Stretch="Uniform" VerticalAlignment="Top" Width="100" Source="/DeskTop;component/Resources/tx.jpg" />
+        <Button Content="Github" Height="18" HorizontalAlignment="Left" Margin="18,249,0,0" Name="button1" VerticalAlignment="Top" Width="88" Click="button1_Click" />
     </Grid>
 </Window>

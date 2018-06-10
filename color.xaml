@@ -1,11 +1,13 @@
 ﻿<Window x:Class="Desktopwpf.Window1"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Settings" Height="135" Width="237" Name="colorwin" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="/DeskTop;component/ico.ico" Closing="colorwin_Closing" Loaded="colorwin_Loaded">
+        Title="Settings" Height="181" Width="237" Name="colorwin" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Icon="/DeskTop;component/ico.ico" Closing="colorwin_Closing" Loaded="colorwin_Loaded">
     <Grid>
-        <Slider Height="26" Name="slider1" VerticalAlignment="Center" Maximum="2" ValueChanged="slider1_ValueChanged" Minimum="1" TickFrequency="0.5" TickPlacement="BottomRight" LargeChange="0.5" HorizontalAlignment="Center" Width="179" HorizontalContentAlignment="Left" Margin="12,58,24,12">
+        <Slider Height="26" Name="slider1" VerticalAlignment="Center" Maximum="2" ValueChanged="slider1_ValueChanged" Minimum="1" TickFrequency="0.5" TickPlacement="BottomRight" LargeChange="0.5" HorizontalAlignment="Center" Width="179" HorizontalContentAlignment="Left" Margin="16,106,20,12">
         </Slider>
-        <Label Content="桌面倒计时大小" Height="25" HorizontalAlignment="Center" Margin="8,33,102,0" Name="label1" VerticalAlignment="Top" Width="105" HorizontalContentAlignment="Left" />
-        <CheckBox Content="开机自动启动" Height="28" HorizontalAlignment="Left" Margin="12,12,0,0" Name="checkBox1" VerticalAlignment="Top" Width="124" HorizontalContentAlignment="Left" Checked="checkBox1_Checked" Unchecked="checkBox1_Unchecked" />
+        <Label Content="桌面倒计时大小" Height="25" HorizontalAlignment="Center" Margin="14,68,96,0" Name="label1" VerticalAlignment="Top" Width="105" HorizontalContentAlignment="Left" />
+        <CheckBox Content="开机自动启动" Height="28" HorizontalAlignment="Left" Margin="16,41,0,0" Name="checkBox1" VerticalAlignment="Top" Width="124" HorizontalContentAlignment="Left" Checked="checkBox1_Checked" Unchecked="checkBox1_Unchecked" />
+        <RadioButton Content="高考" Height="23" HorizontalAlignment="Left" Margin="16,15,0,0" Name="radioButton1" VerticalAlignment="Top" Width="69" GroupName="mode" Focusable="False" IsChecked="True" Checked="radioButton1_Checked" />
+        <RadioButton Content="中考" Height="23" HorizontalAlignment="Left" Margin="91,15,0,0" Name="radioButton2" VerticalAlignment="Top" Width="69" GroupName="mode" Focusable="False" Checked="radioButton2_Checked" />
     </Grid>
 </Window>

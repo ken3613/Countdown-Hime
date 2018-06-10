@@ -58,8 +58,13 @@ namespace Desktopwpf
         //实用类
         time timewindow;
         bool timershow;
-        string path;
-        int year;
+        string path,countmode;
+        int gk_year,zk_year;
+        public DateTime n_date = new DateTime();
+        public DateTime gk_exam;
+        public DateTime zk_exam;
+        public TimeSpan gk_c_date, zk_c_date;
+
 
         RegistryKey localreg = Registry.CurrentUser;
         string keystr;
@@ -69,12 +74,20 @@ namespace Desktopwpf
         {
 
             if (DateTime.Now.Month > 6)
-                year = DateTime.Now.Year + 1;
+                gk_year = DateTime.Now.Year + 1;
             else if (DateTime.Now.Month < 6)
-                year = DateTime.Now.Year;
+                gk_year = DateTime.Now.Year;
             else if ((DateTime.Now.Month == 6) && (DateTime.Now.Day < 7))
-                year = DateTime.Now.Year;
-            else year = DateTime.Now.Year + 1;
+                gk_year = DateTime.Now.Year;
+            else gk_year = DateTime.Now.Year + 1;
+
+            if (DateTime.Now.Month > 6)
+                zk_year = DateTime.Now.Year + 1;
+            else if (DateTime.Now.Month < 6)
+                zk_year = DateTime.Now.Year;
+            else if ((DateTime.Now.Month == 6) && (DateTime.Now.Day < 15))
+                zk_year = DateTime.Now.Year;
+            else zk_year = DateTime.Now.Year + 1;
 
 
 
@@ -87,7 +100,16 @@ namespace Desktopwpf
                 File.Create(path).Close();
                 winapi.WritePrivateProfileString("size", "sizerate", "1.0", path);
                 winapi.WritePrivateProfileString("timer", "timershow", "1", path);
+                winapi.WritePrivateProfileString("timer", "mode", "gk",path);
             }
+
+
+            //设置计时模式
+            StringBuilder mode = new StringBuilder(500);
+            winapi.GetPrivateProfileString("timer", "mode", "", mode, 500, System.Windows.Forms.Application.StartupPath + "\\settings.ini");
+            if (mode.ToString() == "gk") this.countmode = "gk";
+            else this.countmode = "zk";
+
             InitializeComponent();
 
             //设定位置
@@ -133,13 +155,24 @@ namespace Desktopwpf
 
 
             //设置数字
-            DateTime n_date = new DateTime();
-            DateTime exam = new DateTime(year, 6, 7, 0, 0, 0);
-            TimeSpan c_date;
+            gk_exam=new DateTime(gk_year, 6, 7, 0, 0, 0);
+            zk_exam = new DateTime(zk_year, 6, 15, 0, 0, 0);
             n_date = DateTime.Today;
-            c_date = exam - n_date;
-            numlabel.Content = c_date.Days.ToString();
-            timewindow = new time(this,year);
+            gk_c_date = gk_exam - n_date;
+            zk_c_date = zk_exam - n_date;
+            if (countmode == "gk")
+            {
+                numlabel.Content = gk_c_date.Days.ToString();
+                titlelabel.Content = "距离高考还有";
+            }
+            else
+            {
+                numlabel.Content = zk_c_date.Days.ToString();
+                titlelabel.Content = "距离中考还有";
+            }
+
+            
+            timewindow = new time(this,gk_year,zk_year,countmode);
             timewindow.Show();
            
 
@@ -174,7 +207,7 @@ namespace Desktopwpf
 
         private void size(object sender, EventArgs e)
         {
-            Window1 colorwindow = new Window1(this,timewindow);
+            Window1 colorwindow = new Window1(this,timewindow,countmode);
             colorwindow.Show();
         }
 
@@ -204,6 +237,8 @@ namespace Desktopwpf
 
             exStyle |= (int)0x00000080;
             SetWindowLong(wndHelper.Handle, (int)-20, (IntPtr)exStyle);
+
+            
 
             //设置桌面倒计时是否显示
             StringBuilder isshow = new StringBuilder(500);

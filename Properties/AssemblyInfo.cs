@@ -12,7 +12,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Nona")]
 [assembly: AssemblyProduct("DeskTop")]
-[assembly: AssemblyCopyright("©2018 Nona&2018届6班")]
+[assembly: AssemblyCopyright("©2018 Nona&2018届高三6班")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

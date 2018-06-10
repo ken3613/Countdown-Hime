@@ -39,16 +39,31 @@ namespace Desktopwpf
         //日期类
         DispatcherTimer timer1 = new DispatcherTimer();
         string day, hour, minute, second,cont;
+        public int year,gk,zk;
         DateTime n_date = new DateTime();
-        DateTime exam;
+        public DateTime exam,gk_exam,zk_exam;
         TimeSpan c_date;
 
-        public time(MainWindow w,int y)
+        public time(MainWindow w,int gk_year,int zk_year,string mode)
         {
-            int year = y;
+            zk = zk_year;
+            gk = gk_year;          
             InitializeComponent();
-            exam = new DateTime(year, 6, 7, 9, 0, 0);
-            title.Content = "距离" + year.ToString() + "高考还有";
+            gk_exam = new DateTime(gk, 6, 7, 9, 0, 0);
+            zk_exam = new DateTime(zk, 6, 15, 8, 0, 0);
+            if (mode == "gk")
+            {
+                exam = gk_exam;
+                year = gk;
+                title.Content = "距离" + year.ToString() + "高考还有";
+            }
+            else
+            {
+                exam = zk_exam;
+                year = zk;
+                title.Content = "距离" + year.ToString() + "中考还有";
+            }
+            
             timer1.Interval = TimeSpan.FromSeconds(1);
             timer1.Tick += new EventHandler(changetime);
             timer1.Start();
